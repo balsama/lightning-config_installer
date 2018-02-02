@@ -1,0 +1,25 @@
+uuid: ef2a3080-52cc-48df-9fb4-de69cd4e8a36
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_media_in_library
+    - media.type.tweet
+_core:
+  default_config_hash: Vu7aDQE5B_ZXzGFirW2FnEkCIVoxEuGQPeVfuk443vI
+id: media.tweet.field_media_in_library
+field_name: field_media_in_library
+entity_type: media
+bundle: tweet
+label: 'Save to my media library'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'Saved to my media library'
+  off_label: 'Not in my media library'
+field_type: boolean

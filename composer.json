@@ -1,0 +1,95 @@
+{
+    "name": "acquia/lightning-project",
+    "description": "Project template for Drupal 8 sites built with the Lightning distribution.",
+    "type": "project",
+    "license": "GPL-2.0+",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require-dev": {
+        "drupal/drupal-extension": "~3.3.0",
+        "behat/mink": "~1.7",
+        "behat/mink-goutte-driver": "~1.2",
+        "jcalderonzumba/gastonjs": "~1.0.2",
+        "drupal/coder": "8.*",
+        "mikey179/vfsStream": "~1.2",
+        "phpunit/phpunit": "~4.8",
+        "symfony/css-selector": "~2.8",
+        "behat/behat": "^3.0",
+        "se/selenium-server-standalone": "^2.53",
+        "drush/drush": "^9.0",
+        "drupal/console": "1.0.1",
+        "drupal/media_entity_generic": "^1.0",
+        "acquia/lightning_dev": "dev-8.x-1.x"
+    },
+    "require": {
+        "drupal-composer/drupal-scaffold": "^2.0.0",
+        "cweagans/composer-patches": "^1.6.0",
+        "acquia/lightning": "~3.0.0",
+        "drupal/config_installer": "1.5.0",
+        "drupal/paragraphs": "^1.2"
+    },
+    "repositories": {
+        "drupal": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        },
+        "assets": {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        },
+        "dev": {
+            "type": "vcs",
+            "url": "https://github.com/acquia/lightning-dev"
+        }
+    },
+    "scripts": {
+      "post-install-cmd": [
+        "DrupalComposer\\DrupalScaffold\\Plugin::scaffold"
+      ],
+      "post-update-cmd": [
+        "DrupalComposer\\DrupalScaffold\\Plugin::scaffold"
+      ],
+      "nuke": "rm -rf docroot/modules/contrib && rm -rf docroot/profiles/contrib/lightning && rm -rf vendor && rm composer.lock"
+    },
+    "extra": {
+        "installer-types": [
+            "bower-asset",
+            "npm-asset"
+        ],
+        "installer-paths": {
+            "docroot/core": [
+                "type:drupal-core"
+            ],
+            "docroot/libraries/{$name}": [
+                "type:drupal-library",
+                "type:bower-asset",
+                "type:npm-asset"
+            ],
+            "docroot/modules/contrib/{$name}": [
+                "type:drupal-module"
+            ],
+            "docroot/profiles/contrib/{$name}": [
+                "type:drupal-profile"
+            ],
+            "docroot/themes/contrib/{$name}": [
+                "type:drupal-theme"
+            ],
+            "drush/contrib/{$name}": [
+                "type:drupal-drush"
+            ]
+        },
+        "patches": {
+            "drupal/config_installer": {
+                "2916090 - Support Drush 9":
+                "https://www.drupal.org/files/issues/drush9-support-2916090-6.patch",
+                "2935426 - Drush 9: Call to undefined function drush_generate_password":
+                "https://www.drupal.org/files/issues/config_installer-drush_9_call_undefined_function_drush_generate_password-2935426-2.patch"
+            },
+            "drupal/lightning_layout": {
+                "2933445 - user.role.layout_manager has dependency on Lightning":
+                "https://www.drupal.org/files/issues/2933445.patch"
+            }
+        },
+        "enable-patching": true
+    }
+}

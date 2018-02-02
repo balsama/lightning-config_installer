@@ -1,0 +1,14 @@
+uuid: 1a6c159f-523b-4846-bff6-02220d2fd318
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.landing_page_creator
+  module:
+    - user
+id: user_remove_role_action.landing_page_creator
+label: 'Remove the Landing page creator role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: landing_page_creator

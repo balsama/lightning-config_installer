@@ -1,0 +1,10 @@
+uuid: dba2a905-04ba-40be-997c-de2fb31a1e22
+langcode: en
+status: true
+dependencies:
+  module:
+    - consumers
+id: consumer.token
+label: Token
+targetEntityType: consumer
+cache: true

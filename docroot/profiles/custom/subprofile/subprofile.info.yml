@@ -1,0 +1,15 @@
+name: 'Lightning Extender'
+type: profile
+version: 8.x-dev
+core: '8.x'
+dependencies:
+  - paragraphs
+
+themes:
+  - bartik
+  - seven
+
+base profile:
+  name: lightning
+  excluded_dependencies:
+    - lightning_search
