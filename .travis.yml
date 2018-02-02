@@ -80,7 +80,7 @@ before_script:
   - sleep 5
 
 script:
-  - behat --strict --stop-on-failure --config ./sites/default/files/behat.yml --tags=~search
+  - behat --strict --config ./sites/default/files/behat.yml --tags=~search
 
 matrix:
   fast_finish: true
