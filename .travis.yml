@@ -63,12 +63,10 @@ install:
   - composer install
 
   # Install Lightning.
-  - cd $TRAVIS_BUILD_DIR/docroot
   - drush site-install config_installer --yes --account-pass=admin --db-url=mysql://drupal:drupal@127.0.0.1/drupal
   - drush config-set system.logging error_level all --yes
 
   # Generate the behat config.
-  - cd $TRAVIS_BUILD_DIR
   - drupal behat:init http://127.0.0.1:8080 --merge=../docroot/profiles/contrib/lightning/tests/behat.yml
   - drupal behat:include ../docroot/profiles/contrib/lightning/tests/features --with-subcontexts=../docroot/profiles/contrib/lightning/tests/features/bootstrap --with-subcontexts=../docroot/profiles/contrib/lightning/src/LightningExtension/Context
   - drupal behat:include ../tests/features
