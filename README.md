@@ -36,11 +36,9 @@ Do not use this project as a starting point for your own project.
   Drupal >= 8.3.0. You can prevent Drupal from writing it by disallowing write
   access to the settings file. If the installer wrote the profile during initial
   installation, you can manually delete it. Then revoke write access:
-  
   ```
   $ chmod 444 docroot/sites/default/settings.php
   ```
-
 1. Define the following patches in your composer.json file if you are using
   config_installer < 1.6.0 and/or lightning < 3.0.2.
   
@@ -58,22 +56,19 @@ Do not use this project as a starting point for your own project.
       }
   },
   ```
-
 1. Add the Configuration installer profile to your codebase.
-
+  
   ```
   $ composer require drupal/config_installer
   ```
-
 1. Export your site's configuration.
-
+  
   ```
   $ drush config-export
   ```
-
 1. Use the Configuration installer profile in all subsequent site installs. The
   resulting install will run on the profile used in step 1. 
-
+  
   ```
   $ drush site-install config_installer 
   ```
