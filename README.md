@@ -18,7 +18,9 @@ Do not use this project as a starting point for your own project.
 
 ## Considerations when using the Config installer profile
 * For ease of use, your settings file should not be writable by the installer
-  and should *not* contain the `install_profile` key.
+  and should *not* contain the `install_profile` key. If your settings file
+  contains your profile, you'll get an exception when trying to run the install.
+  And if it is writable, Drupal will write that value every time you do install.
 * The Config installer profile requires two patches in order to work properly
   with Drush 9.
 * Config must not have direct dependencies on a profile. Lightning 3.0.1
@@ -31,7 +33,7 @@ Do not use this project as a starting point for your own project.
   $ drush site-install lightning
   ```
 
-1. Ensure that the `install_profile` key is *not* present in your settings.php
+2. Ensure that the `install_profile` key is *not* present in your settings.php
   file. Drupal will write this value by default, but it is not required in
   Drupal >= 8.3.0. You can prevent Drupal from writing it by disallowing write
   access to the settings file. If the installer wrote the profile during initial
@@ -39,7 +41,7 @@ Do not use this project as a starting point for your own project.
   ```
   $ chmod 444 docroot/sites/default/settings.php
   ```
-1. Define the following patches in your composer.json file if you are using
+3. Define the following patches in your composer.json file if you are using
   config_installer < 1.6.0 and/or lightning < 3.0.2.
   
   ```
@@ -56,17 +58,17 @@ Do not use this project as a starting point for your own project.
       }
   },
   ```
-1. Add the Configuration installer profile to your codebase.
+4. Add the Configuration installer profile to your codebase.
   
   ```
   $ composer require drupal/config_installer
   ```
-1. Export your site's configuration.
+5. Export your site's configuration.
   
   ```
   $ drush config-export
   ```
-1. Use the Configuration installer profile in all subsequent site installs. The
+6. Use the Configuration installer profile in all subsequent site installs. The
   resulting install will run on the profile used in step 1. 
   
   ```
